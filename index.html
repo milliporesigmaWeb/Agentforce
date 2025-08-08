@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Acme Scientific | Lab & Life Science Supplies</title>
+  <meta name="description" content="Single-file demo homepage inspired by large lab supply sites. Replace placeholders with your content." />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#121417;
+      --muted:#667085;
+      --brand:#0052cc;
+      --brand-2:#1f8a70;
+      --accent:#f0f4ff;
+      --border:#e5e7eb;
+      --warn:#b42318;
+      --ok:#067647;
+      --shadow:0 8px 24px rgba(2,6,23,.08);
+      --radius:16px;
+      --radius-sm:10px;
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--max);margin:0 auto;padding:0 16px}
+    header.topbar{border-bottom:1px solid var(--border);background:#fafafa}
+    .topbar .inner{display:flex;align-items:center;gap:16px;min-height:56px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .logo svg{width:28px;height:28px}
+    .search-wrap{flex:1;display:flex;gap:8px;align-items:center}
+    .search{position:relative;flex:1}
+    .search input{width:100%;padding:12px 40px 12px 40px;border:1px solid var(--border);border-radius:999px;background:#fff}
+    .search .icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.6}
+    .search .kbd{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:2px 6px;background:#fff}
+    .quick-links{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .pill{border:1px solid var(--border);padding:6px 10px;border-radius:999px;color:#344054;background:#fff}
+    nav.primary{border-bottom:1px solid var(--border);background:#fff}
+    nav .inner{display:flex;gap:20px;min-height:44px;align-items:center;overflow:auto}
+    nav a{color:#344054;font-weight:600;padding:10px 8px;border-radius:8px;white-space:nowrap}
+    nav a:hover{background:#f6f7fb}
+    .hero{background:linear-gradient(120deg,#f7faff 0%,#f0fff8 100%);border-bottom:1px solid var(--border)}
+    .hero .content{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:28px 0}
+    .hero h1{font-size:clamp(24px,3vw,38px);line-height:1.15;margin:0 0 10px}
+    .hero p{color:#475467;margin:0 0 16px}
+    .cta{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:#fff;font-weight:600}
+    .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border-radius:999px;background:#fff;border:1px solid var(--border);font-size:12px;color:#344054}
+    .illus{aspect-ratio:4/3;border:1px dashed var(--border);border-radius:var(--radius);background:
+      radial-gradient(circle at 30% 30%,#e8f0ff,transparent 40%),
+      radial-gradient(circle at 70% 70%,#e6fff4,transparent 40%);
+      display:flex;align-items:center;justify-content:center;color:#3b82f6;font-weight:700}
+    .section{padding:28px 0}
+    .grid{display:grid;gap:16px}
+    .grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:980px){.hero .content{grid-template-columns:1fr}.grid.cols-4{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:680px){.grid.cols-3{grid-template-columns:1fr}.grid.cols-4{grid-template-columns:1fr}}
+    .card{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+    .card .img{aspect-ratio:16/9;background:linear-gradient(135deg,#eef2ff 0%,#ecfeff 100%);display:flex;align-items:center;justify-content:center;font-weight:700;color:#334155}
+    .card .body{padding:14px}
+    .card .title{font-weight:700;margin:0 0 4px}
+    .card .desc{margin:0;color:#475467;font-size:14px}
+    .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    @media (max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    .kpi{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff;text-align:center}
+    .kpi .num{font-size:28px;font-weight:800}
+    .strip{border:1px solid var(--border);border-radius:var(--radius);padding:12px;background:#f8fafc;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .strip b{color:#0f172a}
+    .newsletter{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    @media (max-width:980px){.newsletter{grid-template-columns:1fr}}
+    .input-line{display:flex;gap:8px}
+    input[type="email"]{flex:1;padding:12px;border:1px solid var(--border);border-radius:12px}
+    footer{border-top:1px solid var(--border);background:#fafafa;padding:24px 0;margin-top:24px}
+    .foot-grid{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:16px}
+    @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr}}
+    .muted{color:var(--muted)}
+    .chip{font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;background:#fff;color:#475467}
+    .megamenu{position:relative}
+    .megamenu-panel{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:16px;display:none;z-index:30}
+    .megamenu.open .megamenu-panel{display:block}
+    .mm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:980px){.mm-grid{grid-template-columns:1fr 1fr}}
+    .mm-col h4{margin:0 0 8px;font-size:14px}
+    .mm-col a{display:block;padding:6px 6px;border-radius:8px;color:#334155}
+    .mm-col a:hover{background:#f8fafc}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <!-- Top bar: logo, search, quick links -->
+  <header class="topbar">
+    <div class="container inner">
+      <a class="logo" href="#" aria-label="Acme Scientific Home">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/>
+          <path d="M7 15c3-6 7-6 10 0" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <span>Acme Scientific</span>
+      </a>
+      <div class="search-wrap" role="search">
+        <div class="search">
+          <span class="icon" aria-hidden="true">🔎</span>
+          <input id="siteSearch" placeholder="Search products, CAS, catalogs…" aria-label="Search" />
+          <span class="kbd">/</span>
+        </div>
+        <div class="quick-links">
+          <a class="pill" href="#">Order Center</a>
+          <a class="pill" href="#">Safety Data Sheets</a>
+          <a class="pill" href="#">Certificates</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Primary nav with a simple mega-menu -->
+  <nav class="primary" aria-label="Primary">
+    <div class="container inner">
+      <div class="megamenu" data-mm>
+        <a href="#" data-mm-toggle>Products ▾</a>
+        <div class="megamenu-panel" role="dialog" aria-label="Products">
+          <div class="mm-grid">
+            <div class="mm-col">
+              <h4>Chemicals</h4>
+              <a href="#">Analytical Reagents</a>
+              <a href="#">Solvents</a>
+              <a href="#">Acids & Bases</a>
+              <a href="#">Buffers</a>
+            </div>
+            <div class="mm-col">
+              <h4>Bioreagents</h4>
+              <a href="#">Antibodies</a>
+              <a href="#">Proteins & Enzymes</a>
+              <a href="#">PCR & qPCR</a>
+              <a href="#">Cell Culture</a>
+            </div>
+            <div class="mm-col">
+              <h4>Materials</h4>
+              <a href="#">Chromatography</a>
+              <a href="#">Filtration</a>
+              <a href="#">Catalysts</a>
+              <a href="#">Nanomaterials</a>
+            </div>
+            <div class="mm-col">
+              <h4>Lab Essentials</h4>
+              <a href="#">Glassware</a>
+              <a href="#">Plasticware</a>
+              <a href="#">Safety</a>
+              <a href="#">Equipment</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#">Brands</a>
+      <a href="#">Applications</a>
+      <a href="#">Industries</a>
+      <a href="#">Services</a>
+      <a href="#">Resources</a>
+      <a href="#">Support</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container content">
+      <div>
+        <span class="badge" aria-label="Promo badge">New • Fall Spotlight</span>
+        <h1>Everything for your lab—reagents, materials, and know-how.</h1>
+        <p>Discover a comprehensive portfolio for analytical chemistry, life science, and advanced materials. Fast fulfillment, technical depth, and reliable quality.</p>
+        <div class="cta">
+          <a class="btn primary" href="#">Browse Products</a>
+          <a class="btn" href="#">Explore Applications</a>
+          <a class="btn" href="#">Request a Quote</a>
+        </div>
+      </div>
+      <div class="illus" aria-hidden="true">Hero Image</div>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section class="section">
+    <div class="container kpis" aria-label="Key metrics">
+      <div class="kpi"><div class="num">300k+</div><div class="muted">Products</div></div>
+      <div class="kpi"><div class="num">45k+</div><div class="muted">Documents</div></div>
+      <div class="kpi"><div class="num">190+</div><div class="muted">Countries</div></div>
+      <div class="kpi"><div class="num">170+</div><div class="muted">Years serving science</div></div>
+    </div>
+  </section>
+
+  <!-- Category tiles -->
+  <section class="section">
+    <div class="container">
+      <h2 style="margin:0 0 12px;">Shop by Category</h2>
+      <div class="grid cols-4">
+        <article class="card">
+          <div class="img">Chemicals</div>
+          <div class="body">
+            <h3 class="title">Chemicals</h3>
+            <p class="desc">ACS reagents, solvents, standards, buffers, and more.</p>
+            <p><a href="#">Shop chemicals →</a></p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="img">Life Science</div>
+          <div class="body">
+            <h3 class="title">Life Science</h3>
+            <p class="desc">Antibodies, cell culture media, nucleic acid tools.</p>
+            <p><a href="#">Shop life science →</a></p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="img">Chromatography</div>
+          <div class="body">
+            <h3 class="title">Chromatography</h3>
+            <p class="desc">Columns, standards, plates, vials, SPE and more.</p>
+            <p><a href="#">Shop chromatography →</a></p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="img">Lab Essentials</div>
+          <div class="body">
+            <h3 class="title">Lab Essentials</h3>
+            <p class="desc">Glassware, safety, consumables, small equipment.</p>
+            <p><a href="#">Shop essentials →</a></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured content / promos -->
+  <section class="section">
+    <div class="container">
+      <div class="strip">
+        <div>📦 <b>Fast & dependable shipping</b> — track orders and access documents in your account.</div>
+        <div class="chip">SDS</div>
+        <div class="chip">COA</div>
+        <div class="chip">RoHS</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid cols-3">
+      <article class="card">
+        <div class="img">Application Guides</div>
+        <div class="body">
+          <h3 class="title">Application Notes & Guides</h3>
+          <p class="desc">Protocols and troubleshooting tips for analytical and bio workflows.</p>
+          <p><a href="#">View resources →</a></p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="img">Tech Service</div>
+        <div class="body">
+          <h3 class="title">Technical Service</h3>
+          <p class="desc">Ask experts for method advice, product selection, and safety info.</p>
+          <p><a href="#">Contact support →</a></p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="img">Sustainability</div>
+        <div class="body">
+          <h3 class="title">Sustainability</h3>
+          <p class="desc">Products and services that help reduce environmental impact.</p>
+          <p><a href="#">Explore initiatives →</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section">
+    <div class="container newsletter">
+      <div class="card" role="region" aria-label="Newsletter signup">
+        <div class="body">
+          <h3 class="title">Get updates & offers</h3>
+          <p class="desc">Join our mailing list for product highlights, methods, and promotions.</p>
+          <form onsubmit="subscribe(event)" class="input-line" aria-label="Email subscription form">
+            <label class="sr-only" for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="your@lab.edu" required />
+            <button class="btn primary" type="submit">Subscribe</button>
+          </form>
+          <p id="subResult" class="muted" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="body">
+          <h3 class="title">Order Center</h3>
+          <p class="desc">Quickly place orders by SKU, upload lists, or reorder from history.</p>
+          <p><a href="#" class="btn">Open Order Center</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:8px">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M7 15c3-6 7-6 10 0" stroke="currentColor" stroke-width="2" />
+          </svg>
+          <span>Acme Scientific</span>
+        </div>
+        <p class="muted">© <span id="year"></span> Acme Scientific. All rights reserved.</p>
+        <p class="muted">This is a demo single-file template. Replace content with your own.</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <ul class="muted" style="list-style:none;padding:0;margin:8px 0 0">
+          <li><a href="#">Chemicals</a></li>
+          <li><a href="#">Life Science</a></li>
+          <li><a href="#">Materials</a></li>
+          <li><a href="#">Lab Essentials</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul class="muted" style="list-style:none;padding:0;margin:8px 0 0">
+          <li><a href="#">Documents</a></li>
+          <li><a href="#">SDS</a></li>
+          <li><a href="#">Certificates</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="muted" style="list-style:none;padding:0;margin:8px 0 0">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="muted" style="list-style:none;padding:0;margin:8px 0 0">
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Cookie Settings</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Small UX niceties for a single-file demo
+    const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+
+    // Focus search with "/" like many sites
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
+        e.preventDefault();
+        document.getElementById('siteSearch').focus();
+      }
+    });
+
+    // Fake subscribe
+    function subscribe(e){
+      e.preventDefault();
+      const email = (new FormData(e.target)).get('email');
+      const msg = document.getElementById('subResult');
+      msg.textContent = `Thanks! We'll email updates to ${email}.`;
+      e.target.reset();
+    }
+
+    // Simple mega-menu toggle for "Products"
+    const mm = document.querySelector('[data-mm]');
+    const toggle = document.querySelector('[data-mm-toggle]');
+    if (toggle) {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        mm.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!mm.contains(e.target)) mm.classList.remove('open');
+      });
+      // basic Escape support
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') mm.classList.remove('open');
+      });
+    }
+  </script>
+</body>
+</html>
