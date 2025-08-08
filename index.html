@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Page Image</title>
+  <title>Full Page Image - Fit</title>
   <style>
     html, body {
       margin: 0;
@@ -11,11 +11,15 @@
       height: 100%;
       width: 100%;
       overflow: hidden;
+      background-color: black; /* fills background if aspect ratios differ */
     }
     img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: auto;
     }
   </style>
 </head>
