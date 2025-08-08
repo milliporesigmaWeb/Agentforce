@@ -25,5 +25,25 @@
 </head>
 <body>
   <img src="2025-08-08_10-24-22.png" alt="Full Page Image">
+  <script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00DbY00000ENepV',
+				'Messaging_Service',
+				'https://maestro--mpoc.sandbox.my.site.com/ESWMessagingService1730092965382',
+				{
+					scrt2URL: 'https://maestro--mpoc.sandbox.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://maestro--mpoc.sandbox.my.site.com/ESWMessagingService1730092965382/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
 </body>
 </html>
