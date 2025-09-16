@@ -45,8 +45,9 @@
 	};
 
 	//Passing Web Context to Prechat - BEGIN
-    var sFirstName = "John";
-    var sLastName = "Doe";
+    var sFirstName = "Paulo";
+    var sLastName = "Correia";
+	var sEmail ="paulo@correia.com"
     var sSubject = "Test Subject";
     var sCustomerID = "12345678";
     var sShoppingCartValue = "1000";
@@ -61,16 +62,21 @@
             // it's editable in the pre-chat form.
             "_firstName": {
               "value": sFirstName,
-              "isEditableByEndUser": false
+              "isEditableByEndUser": true
             },
             "_lastName": {
               "value": sLastName,
-              "isEditableByEndUser": false
+              "isEditableByEndUser": true
+            },
+			"_email": {
+              "value": sEmail,
+              "isEditableByEndUser": true
             },
             "_subject": {
               "value": "test subject",
               "isEditableByEndUser": true
             }
+			
         });
       
         //Set invisible prechat field
