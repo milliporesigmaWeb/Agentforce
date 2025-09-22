@@ -51,6 +51,7 @@
     var sSubject = "Test Subject";
     var sCustomerID = "12345678";
     var sShoppingCartValue = "1000";
+	var sLanguage="Spanish"; 
         
     window.addEventListener("onEmbeddedMessagingReady", e => {
         //log event
@@ -82,6 +83,7 @@
         //Set invisible prechat field
         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
             "Shopping_Cart_Value" : sShoppingCartValue,
+			"Language" : sLanguage,
             "Customer_ID" : sCustomerID
         });
     });
