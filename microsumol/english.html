@@ -2,7 +2,8 @@
 	<body>
   microsumol English V3
   <script type='text/javascript'>
-	var sLanguage="en-US"; // For example, enter 'en' or 'en-US'
+  var sLanguage = "en-US"; // UI language (BCP-47)
+  var sSfLanguage = sLanguage.replace("-", "_"); // Context language (Salesforce-style)
 	  
 	function initEmbeddedMessaging() {
 		try {
@@ -25,7 +26,7 @@
               
         //Set invisible prechat field
         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({            
-			"web_language" : sLanguage            
+			"web_language" : sSfLanguage            
         });
     });
     
