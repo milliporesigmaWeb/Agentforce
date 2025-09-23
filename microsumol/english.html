@@ -3,7 +3,7 @@
   microsumol English V3
   <script type='text/javascript'>
   var sLanguage = "en-US"; // UI language (BCP-47)
-  var sSfLanguage = sLanguage.replace("-", "_"); // Context language (Salesforce-style)
+  var fLanguage = "en_US";
 	  
 	function initEmbeddedMessaging() {
 		try {
@@ -26,7 +26,8 @@
               
         //Set invisible prechat field
         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({            
-			"web_language" : sSfLanguage            
+			"web_language" : fLanguage,
+			"flow_language" : fLanguage
         });
     });
     
