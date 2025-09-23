@@ -32,8 +32,8 @@
   window.addEventListener("onEmbeddedMessagingReady", () => {
     console.log("[EMBED] ready; setting hidden fields…");
     embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-      "web_language": fLanguage,    // keep both, why not
-      "flow_language": fLanguage
+      "web_language": fLanguage    // keep both, why not
+      
     });
     console.log("[EMBED] hidden fields set:", { web_language: fLanguage, flow_language: fLanguage });
   });
