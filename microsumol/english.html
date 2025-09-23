@@ -1,10 +1,12 @@
 <html>
 	<body>
-  microsumol v2
+  microsumol English V3
   <script type='text/javascript'>
+	var sLanguage="en-US"; // For example, enter 'en' or 'en-US'
+	  
 	function initEmbeddedMessaging() {
 		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+			embeddedservice_bootstrap.settings.language = sLanguage; 
 
 			embeddedservice_bootstrap.init(
 				'00DgL000007IsvZ',
@@ -18,6 +20,15 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
+        
+    window.addEventListener("onEmbeddedMessagingReady", e => {            
+              
+        //Set invisible prechat field
+        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({            
+			"web_language" : sLanguage            
+        });
+    });
+    
 </script>
 <script type='text/javascript' src='https://microsumol69-dev-ed.develop.my.site.com/ESWmicrosumol1758572573903/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
