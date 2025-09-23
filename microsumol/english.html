@@ -1,37 +1,44 @@
 <html>
 	<body>
   microsumol English V3
-  <script type='text/javascript'>
-  var sLanguage = "en-US"; // UI language (BCP-47)
+  <script>
+  var sLanguage = "en-US";
   var fLanguage = "en_US";
-	  
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = sLanguage; 
 
-			embeddedservice_bootstrap.init(
-				'00DgL000007IsvZ',
-				'microsumol',
-				'https://microsumol69-dev-ed.develop.my.site.com/ESWmicrosumol1758572573903',
-				{
-					scrt2URL: 'https://microsumol69-dev-ed.develop.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
-        
-    window.addEventListener("onEmbeddedMessagingReady", e => {            
-              
-        //Set invisible prechat field
-        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({            
-			"web_language" : fLanguage,
-			"flow_language" : fLanguage
-        });
+  // (A) Always clear any cached session before you init (for testing)
+  window.localStorage && localStorage.clear();
+  try {
+    // If available in your SDK version:
+    embeddedservice_bootstrap?.utilAPI?.clearSession?.();
+  } catch(e){}
+
+  function initEmbeddedMessaging() {
+    try {
+      embeddedservice_bootstrap.settings.language = sLanguage;
+
+      console.log("[EMBED] init with UI lang:", sLanguage, "flow lang:", fLanguage);
+
+      embeddedservice_bootstrap.init(
+        '00DgL000007IsvZ',
+        'microsumol',
+        'https://microsumol69-dev-ed.develop.my.site.com/ESWmicrosumol1758572573903',
+        { scrt2URL: 'https://microsumol69-dev-ed.develop.my.salesforce-scrt.com' }
+      );
+    } catch (err) {
+      console.error('Error loading Embedded Messaging: ', err);
+    }
+  }
+
+  window.addEventListener("onEmbeddedMessagingReady", () => {
+    console.log("[EMBED] ready; setting hidden fields…");
+    embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+      "web_language": sLanguage,    // keep both, why not
+      "flow_language": fLanguage
     });
-    
+    console.log("[EMBED] hidden fields set:", { web_language: sLanguage, flow_language: fLanguage });
+  });
 </script>
+
 <script type='text/javascript' src='https://microsumol69-dev-ed.develop.my.site.com/ESWmicrosumol1758572573903/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
 </html>
