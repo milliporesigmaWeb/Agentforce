@@ -25,11 +25,14 @@
 </head>
 <body>
   <img src="caen.png" alt="Full Page Image">
-	v5
+	v101 - en_CA
 <script type='text/javascript'>
+
+	var sLanguage = 'en_CA';
+	
 	function initEmbeddedMessaging() {
 		try {
-			embeddedservice_bootstrap.settings.language = 'en_CA'; // For example, enter 'en' or 'en-US'
+			embeddedservice_bootstrap.settings.language = sLanguage; 
 
 			embeddedservice_bootstrap.init(
 				'00DbY00000ENepV',
@@ -42,7 +45,11 @@
 		} catch (err) {
 			console.error('Error loading Embedded Messaging: ', err);
 		}
-	};
+	}
+	
+	window.addEventListener("onEmbeddedMessagingReady", () => {    
+    		embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({ "Language": sLanguage });   			 
+ 	});
 </script>
 <script type='text/javascript' src='https://maestro--mpoc.sandbox.my.site.com/ESWAgentforceMVP1754916889491/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
