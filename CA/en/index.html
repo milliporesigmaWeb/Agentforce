@@ -28,7 +28,8 @@
 	v102 - en
 <script type='text/javascript'>
 
-	var sLanguage = 'en';
+	var sLanguage = "en-CA";
+	var hLanguage = "en_CA";
 	
 	function initEmbeddedMessaging() {
 		try {
@@ -48,7 +49,7 @@
 	}
 	
 	window.addEventListener("onEmbeddedMessagingReady", () => {    
-    		embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({ "Language": sLanguage });   			 
+    		embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({ "Language": hLanguage });   			 
  	});
 </script>
 <script type='text/javascript' src='https://maestro--mpoc.sandbox.my.site.com/ESWAgentforceMVP1754916889491/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
